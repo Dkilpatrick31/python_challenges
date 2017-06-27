@@ -36,7 +36,7 @@ Execute a Python program with:
 Your first task is to research Python to be able to understand some of its basic concepts. Edit this `README.md` file to answer the below questions:
 
 ##### What paradigms does Python support?
-
+Object-oriented, procedural, and functional.
 ##### What typing discipline does it follow?
 
 ##### Is it a high or low level language?
