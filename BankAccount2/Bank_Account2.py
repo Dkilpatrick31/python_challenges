@@ -1,7 +1,7 @@
 """ This is the file for my 2nd BankAccount exercise that includes parent/child classes"""
 
 class BankAccount:
-    def __init__(self, interest_rate):
+    def __init__(self, interest_rate=.02):
         self.balance = 0
         self.interest_rate = interest_rate
 
@@ -17,30 +17,34 @@ class BankAccount:
         return self.balance
 
     def accumulate_interest(self):
-        self.balance = self.balance + self.balance * .02
+        self.balance = self.balance * self.interest_rate
         return self.balance
 
 class ChildrensAccount(BankAccount):
     def __init__(self):
-        super().__init__(self)
         self.interest_rate = 0
+        super().__init__(self.interest_rate)
 
     def accumulate_interest(self):
-        self.balance = self.balance + 10
+        self.balance += 10
 
 
 class OverdraftAccount(BankAccount):
-    def __init__(self, interest_rate):
+    def __init__(self, interest_rate=.02, overdraft_penalty=40):
         super().__init__(interest_rate)
-        self.overdraft_penalty = 40
+        self.overdraft_penalty = overdraft_penalty
 
     def withdraw(self, wit_amount):
         if self.balance < wit_amount:
             self.balance -= self.overdraft_penalty
             return False
+        return super().accumulate_interest()
 
-        self.balance -= wit_amount
-        return self.balance
+    def accumulate_interest(self):
+        if (self.balance <= 0):
+            return False
+
+        return super().accumulate_interest()
 
 Parent = BankAccount(.02)
 Childrens = ChildrensAccount()
